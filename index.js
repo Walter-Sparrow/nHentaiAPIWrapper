@@ -12,4 +12,4 @@ class Request {
   }
 }
 
-module.exports.Request = Request;
+export default Request;
