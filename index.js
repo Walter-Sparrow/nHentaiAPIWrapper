@@ -1,5 +1,5 @@
-const urlProxy = "";
-const mainUrl = "";
+const urlProxy = "https://secret-ocean-49799.herokuapp.com/";
+const baseUrl = "https://nhentai.net";
 
 class Request {
   constructor(props) {
@@ -7,8 +7,12 @@ class Request {
     this.urlProxy = props.urlProxy ?? urlProxy;
   }
 
-  GetTestDoujin() {
-    console.log("test");
+  async GetTestDoujin() {
+    let testUrl = `${
+      this.isProxyOn ? urlProxy : "" + baseUrl
+    }/api/gallery/${177013}`;
+    const res = await fetch(testUrl);
+    return await res.json();
   }
 }
 
