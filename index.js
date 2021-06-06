@@ -1,18 +1,26 @@
-const urlProxy = "https://secret-ocean-49799.herokuapp.com/";
-const baseUrl = "https://nhentai.net";
-
 class Request {
+  _urlProxy = "https://secret-ocean-49799.herokuapp.com/";
+  _baseUrl = "https://nhentai.net";
+
   constructor(props) {
     this.isProxyOn = props.isProxyOn;
-    this.urlProxy = props.urlProxy ?? urlProxy;
+    this.urlProxy = props.urlProxy ?? _urlProxy;
   }
 
-  async GetTestDoujin() {
-    let testUrl = `${
-      this.isProxyOn ? urlProxy : "" + baseUrl
-    }/api/gallery/${177013}`;
-    const res = await fetch(testUrl);
-    return await res.json();
+  #url() {
+    return (this.isProxyOn ? this.urlProxy : "") + _baseUrl;
+  }
+
+  async GetDoujin(id) {
+    let galleryUrl = `${this.#url}/api/gallery/${id}`;
+    return fetch(galleryUrl)
+      .then((response) => {
+        if (!response.ok) throw new Error("Something went wrong!");
+        return response.json();
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 }
 
