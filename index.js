@@ -15,7 +15,21 @@ class Request {
     let galleryUrl = `${this.#url}/api/gallery/${id}`;
     return fetch(galleryUrl)
       .then((response) => {
-        if (!response.ok) throw new Error("Something went wrong!");
+        if (response.status == 404 || response.status == 403)
+          return "Doujin not found";
+        return response.json();
+      })
+      .catch((err) => {
+        throw err;
+      });
+  }
+
+  async GetRelated(id) {
+    let relatedUrl = `${this.#url}/api/gallery/${id}/related`;
+    return fetch(relatedUrl)
+      .then((response) => {
+        if (response.status == 404 || response.status == 403)
+          return "No related found";
         return response.json();
       })
       .catch((err) => {
