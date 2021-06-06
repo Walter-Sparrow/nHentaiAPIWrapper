@@ -4,7 +4,7 @@ class Request {
 
   constructor(props) {
     this.isProxyOn = props.isProxyOn;
-    this.urlProxy = props.urlProxy ?? _urlProxy;
+    this.urlProxy = props.urlProxy ?? this._urlProxy;
   }
 
   #url() {
