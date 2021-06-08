@@ -1,6 +1,6 @@
 {
   "name": "nhentai-api-wrapper",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "description": "",
   "main": "index.js",
   "scripts": {

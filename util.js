@@ -70,15 +70,17 @@ class Request {
 
   async GetRelated(id) {
     const relatedUrl = `${getUrl()}/api/gallery/${id}/related`;
-    return apiRequest(relatedUrl, "No related found");
+    return apiRequest(relatedUrl, "No related found").then(
+      (data) => data.result
+    );
   }
 
   async GetRandom() {
-    const randomUrl = `${baseUrl}/random`;
+    const randomUrl = `${getUrl()}/random`;
     return htmlRequest(randomUrl).then((html) => {
       const page = document.createElement("html");
       page.innerHTML = html;
-      console.log(html);
+      return page.querySelector("#gallery_id").textContent.slice(1);
     });
   }
 
