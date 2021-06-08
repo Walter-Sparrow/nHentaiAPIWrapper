@@ -2,7 +2,8 @@ import Request from "./util";
 const baseUrl = "https://nhentai.net";
 
 function getId(query) {
-  return query.slice(`${baseUrl}/g/`.length);
+  query = query.toString();
+  return query.includes(baseUrl) ? query.slice(`${baseUrl}/g/`.length) : query;
 }
 class NHentaiAPI {
   #request;
@@ -22,10 +23,10 @@ class NHentaiAPI {
   }
 
   GetRandom() {
-    return this.#request.GetRandom();
+    return this.#request.GetRandom().then((url) => this.GetDoujin(url));
   }
 
-  GetPopuarNow() {
+  GetPopularNow() {
     return this.#request.GetPopularNow();
   }
 
