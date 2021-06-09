@@ -1,7 +1,7 @@
 {
   "name": "nhentai-api-wrapper",
-  "version": "2.0.6",
-  "description": "",
+  "version": "2.0.8",
+  "description": "nHentai unofficial API with proxy settings",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/Walter-Sparrow/nHentaiAPIWrapper/issues"
   },
-  "homepage": "https://github.com/Walter-Sparrow/nHentaiAPIWrapper#readme"
+  "homepage": "https://github.com/Walter-Sparrow/nHentaiAPIWrapper#readme",
+  "keywords": [
+    "nhentai",
+    "api wrapper",
+    "unofficial"
+  ]
 }
