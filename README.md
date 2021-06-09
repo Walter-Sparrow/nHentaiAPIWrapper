@@ -1,6 +1,6 @@
 # nHentai Wrapper
 
-nHentai unofficial API with proxy settings
+nHentai unofficial API with cors-proxy settings
 
 ## Install
 
