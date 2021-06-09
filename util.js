@@ -1,4 +1,5 @@
 const baseUrl = "https://nhentai.net";
+const madiaUrl = "https://i.nhentai.net";
 let isProxyOn = false;
 let proxy = "https://secret-ocean-49799.herokuapp.com/";
 
@@ -65,7 +66,12 @@ class Request {
 
   async GetDoujin(id) {
     const galleryUrl = `${getUrl()}/api/gallery/${id}`;
-    return apiRequest(galleryUrl, "Doujin not found");
+    return apiRequest(galleryUrl, "Doujin not found").then((doujin) => {
+      const page_links = [...Array(doujin.num_pages)].map(
+        (_, i) => `${madiaUrl}/galleries/${doujin.media_id}/${i + 1}.jpg`
+      );
+      return { ...doujin, page_links };
+    });
   }
 
   async GetRelated(id) {
