@@ -9,7 +9,8 @@ class NHentaiAPI {
   #request;
 
   constructor(props) {
-    this.#request = new Request(props);
+    if (arguments.length > 0) this.#request = new Request(props);
+    else this.#request = new Request({});
   }
 
   GetDoujin(query) {
