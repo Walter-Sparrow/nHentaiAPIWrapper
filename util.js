@@ -25,6 +25,12 @@ async function htmlRequest(url, errorMessage) {
     });
 }
 
+function getPageLinks(doujin) {
+  return [...Array(doujin.num_pages)].map(
+    (_, i) => `${madiaUrl}/galleries/${doujin.media_id}/${i + 1}.jpg`
+  );
+}
+
 function getDoujinFromHTMLElement(doujin) {
   const id = doujin
     .querySelector(".cover")
@@ -67,17 +73,18 @@ class Request {
   async GetDoujin(id) {
     const galleryUrl = `${getUrl()}/api/gallery/${id}`;
     return apiRequest(galleryUrl, "Doujin not found").then((doujin) => {
-      const page_links = [...Array(doujin.num_pages)].map(
-        (_, i) => `${madiaUrl}/galleries/${doujin.media_id}/${i + 1}.jpg`
-      );
+      const page_links = getPageLinks(doujin);
       return { ...doujin, page_links };
     });
   }
 
   async GetRelated(id) {
     const relatedUrl = `${getUrl()}/api/gallery/${id}/related`;
-    return apiRequest(relatedUrl, "No related found").then(
-      (data) => data.result
+    return apiRequest(relatedUrl, "No related found").then((data) =>
+      data.result.map((doujin) => {
+        const page_links = getPageLinks(doujin);
+        return { ...doujin, page_links };
+      })
     );
   }
 
