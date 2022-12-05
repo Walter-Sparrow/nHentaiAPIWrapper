@@ -74,7 +74,7 @@ api.GetRelated(177013).then((doujin) => console.log(doujin));
             "t": "j",
             "w": 350,
             "h": 506
-        },
+        },as
         "thumbnail": {
             "t": "j",
             "w": 250,
